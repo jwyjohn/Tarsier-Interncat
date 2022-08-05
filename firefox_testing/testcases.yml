@@ -1,7 +1,5 @@
----
-testsuit: Firefox 核心功能测试
 testcases:
-  - id: TC001
+  - id: TC00001
     title: 安装-Firefox
     prequisition:
       - 启动 openEuler xfce riscv
@@ -12,24 +10,26 @@ testcases:
     expected:
       - 命令执行成功， shell 返回值为 0
       - 在终端中执行 `firefox` 可以正常显示 Firefox 界面
-      - （或）点击Firefox图标启动Firefox，见Application->Web Browser，或Application->Internet->Firefox
+      - （或）点击Firefox图标启动Firefox，见Application->Web Browser，或Application->Internet->Firefox 可以正常显示 Firefox 界面
     cleanup:
       - 在终端中使用 Ctrl-C 结束 Firefox 的运行
       - （或）点击窗口的叉号结束 Firefox 的运行
-  - id: TC002
+  - id: TC00002
     title: 卸载-Firefox
     prequisition:
-      - 通过 TC001
+      - 通过 TC00001
     steps:
       - 打开 xterm 终端模拟器
       - 执行 `dnf remove firefox`
     expected:
       - 命令执行成功， shell 返回值为 0
       - xfce 的应用程序中找不到 Firefox 相关的内容
-  - id: TC003
+    cleanup:
+      - 重新安装 Firefox
+  - id: TC00003
     title: 浏览页面-简单html页面-浏览
     prequisition:
-      - 通过 TC001
+      - 通过 TC00001
       - 在 xfce 中打开 Firefox
     steps:
       - 在地址栏中输入 `https://www.w3.org/Protocols/`
@@ -42,10 +42,10 @@ testcases:
       - 超链接显示正常
     cleanup:
       - 关闭 Firefox
-  - id: TC004
+  - id: TC00004
     title: 浏览页面-简单html页面-超链接跳转
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
       - 访问 `https://www.w3.org/Protocols/`
     steps:
@@ -54,10 +54,10 @@ testcases:
       - 成功加载超链接跳转目标的页面
     cleanup:
       - 关闭 Firefox
-  - id: TC005
+  - id: TC00005
     title: 浏览页面-简单js/css/html页面-浏览
     prequisition:
-      - 通过 TC004
+      - 通过 TC00004
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://caniuse.com/es6`
@@ -66,10 +66,10 @@ testcases:
       - 页面字体与布局正常
     cleanup:
       - 关闭 Firefox
-  - id: TC006
+  - id: TC00006
     title: 浏览页面-简单js/css/html页面-互动
     prequisition:
-      - 通过 TC005
+      - 通过 TC00005
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://www.bilibili.com/`
@@ -81,10 +81,10 @@ testcases:
       - 页面的动态加载正常
     cleanup:
       - 关闭 Firefox
-  - id: TC007
+  - id: TC00007
     title: 浏览页面-ES6支持
     prequisition:
-      - 通过 TC005
+      - 通过 TC00005
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `http://ruanyf.github.io/es-checker/index.cn.html`
@@ -93,10 +93,10 @@ testcases:
       - 检测结果支持程度为100%
     cleanup:
       - 关闭 Firefox
-  - id: TC008
+  - id: TC00008
     title: 浏览页面-CSS3支持
     prequisition:
-      - 通过 TC005
+      - 通过 TC00005
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://knb.im/css3/`
@@ -105,10 +105,10 @@ testcases:
       - 检测结果对应Safari 5.05
     cleanup:
       - 关闭 Firefox
-  - id: TC009
+  - id: TC00009
     title: 浏览页面-查看https状态-安全连接
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://www.bilibili.com/`
@@ -117,10 +117,10 @@ testcases:
       - 显示连接安全
     cleanup:
       - 关闭 Firefox
-  - id: TC0010
+  - id: TC000010
     title: 浏览页面-查看https状态-不安全连接
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `http://main.cc/`
@@ -129,10 +129,10 @@ testcases:
       - 显示连接不安全
     cleanup:
       - 关闭 Firefox
-  - id: TC011
+  - id: TC00011
     title: 浏览页面-查看https状态-过期证书
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://expired.badssl.com/`
@@ -141,10 +141,10 @@ testcases:
       - 显示连接不安全
     cleanup:
       - 关闭 Firefox
-  - id: TC012
+  - id: TC00012
     title: 浏览页面-查看https状态-自签名证书
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://self-signed.badssl.com/`
@@ -153,10 +153,10 @@ testcases:
       - 显示连接不安全
     cleanup:
       - 关闭 Firefox
-  - id: TC013
+  - id: TC00013
     title: 浏览页面-查看https状态-域名不匹配
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://wrong.host.badssl.com/`
@@ -165,10 +165,10 @@ testcases:
       - 显示连接不安全
     cleanup:
       - 关闭 Firefox
-  - id: TC014
+  - id: TC00014
     title: 浏览页面-查看https状态-证书被吊销
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://revoked.badssl.com/`
@@ -177,10 +177,10 @@ testcases:
       - 显示连接不安全
     cleanup:
       - 关闭 Firefox
-  - id: TC015
+  - id: TC00015
     title: 浏览页面-查看https状态-根证书无效
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://untrusted-root.badssl.com/`
@@ -189,10 +189,10 @@ testcases:
       - 显示连接不安全
     cleanup:
       - 关闭 Firefox
-  - id: TC016
+  - id: TC00016
     title: 浏览页面-简单js/css/html页面-综合
     prequisition:
-      - 通过 TC005
+      - 通过 TC00005
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://www.bilibili.com/`
@@ -205,10 +205,10 @@ testcases:
       - 视频正常播放
     cleanup:
       - 关闭 Firefox
-  - id: TC017
+  - id: TC00017
     title: 浏览页面-html5支持
     prequisition:
-      - 通过 TC005
+      - 通过 TC00005
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://html5test.com/`
@@ -217,10 +217,10 @@ testcases:
       - 检测结果为满分
     cleanup:
       - 关闭 Firefox
-  - id: TC018
+  - id: TC00018
     title: 书签-使用星星图标-添加书签
     prequisition:
-      - 通过 TC005
+      - 通过 TC00005
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://bing.com/`
@@ -229,10 +229,10 @@ testcases:
       - 书签列表中成功加入书签
     cleanup:
       - 关闭 Firefox
-  - id: TC019
+  - id: TC00019
     title: 书签-使用Ctrl+D快捷键-添加书签
     prequisition:
-      - 通过 TC005
+      - 通过 TC00005
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://bing.com/`
@@ -241,10 +241,10 @@ testcases:
       - 书签列表中成功加入书签
     cleanup:
       - 关闭 Firefox
-  - id: TC020
+  - id: TC00020
     title: 书签-使用星星图标-编辑
     prequisition:
-      - 通过 TC018
+      - 通过 TC00018
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://bing.com/`
@@ -254,10 +254,10 @@ testcases:
       - 书签列表中的对应书签成功被修改为“2333”
     cleanup:
       - 关闭 Firefox
-  - id: TC021
+  - id: TC00021
     title: 书签-使用地址栏搜索书签
     prequisition:
-      - 通过 TC020
+      - 通过 TC00020
       - 在 xfce 中打开 Firefox
     steps:
       - 在地址栏中输入 `2333`
@@ -265,10 +265,10 @@ testcases:
       - 地址栏下方推荐中显示对应的书签
     cleanup:
       - 关闭 Firefox
-  - id: TC022
+  - id: TC00022
     title: 书签-边栏的书签菜单-访问书签
     prequisition:
-      - 通过 TC020
+      - 通过 TC00020
       - 在 xfce 中打开 Firefox
     steps:
       - 点击边栏的书签菜单中的对应书签
@@ -276,10 +276,10 @@ testcases:
       - 成功打开对应的书签
     cleanup:
       - 关闭 Firefox
-  - id: TC023
+  - id: TC00023
     title: 书签-定制工具栏-加入书签
     prequisition:
-      - 通过 TC020
+      - 通过 TC00020
       - 在 xfce 中打开 Firefox
     steps:
       - 点击菜单按钮
@@ -289,10 +289,10 @@ testcases:
       - 书签按钮成功添加到工具栏中
     cleanup:
       - 关闭 Firefox
-  - id: TC024
+  - id: TC00024
     title: 书签-定制工具栏-删除书签
     prequisition:
-      - 通过 TC020
+      - 通过 TC00020
       - 在 xfce 中打开 Firefox
     steps:
       - 点击菜单按钮
@@ -302,10 +302,10 @@ testcases:
       - 书签按钮成功从工具栏中删除
     cleanup:
       - 关闭 Firefox
-  - id: TC025
+  - id: TC00025
     title: 书签-定制工具栏-始终显示
     prequisition:
-      - 通过 TC020
+      - 通过 TC00020
       - 在 xfce 中打开 Firefox
     steps:
       - 点击菜单按钮
@@ -315,10 +315,10 @@ testcases:
       - 工具栏成功设置为始终显示
     cleanup:
       - 关闭 Firefox
-  - id: TC026
+  - id: TC00026
     title: 书签-定制工具栏-永不显示
     prequisition:
-      - 通过 TC020
+      - 通过 TC00020
       - 在 xfce 中打开 Firefox
     steps:
       - 点击菜单按钮
@@ -328,10 +328,10 @@ testcases:
       - 工具栏成功设置为永不显示
     cleanup:
       - 关闭 Firefox
-  - id: TC027
+  - id: TC00027
     title: 书签-管理书签-删除书签
     prequisition:
-      - 通过 TC020
+      - 通过 TC00020
       - 在 xfce 中打开 Firefox
     steps:
       - 点击菜单按钮，书签，管理书签
@@ -341,10 +341,10 @@ testcases:
     cleanup:
       - 将删除的书签重新加入书签中
       - 关闭 Firefox
-  - id: TC027
+  - id: TC00027
     title: 书签-管理书签-导出书签到html
     prequisition:
-      - 通过 TC020
+      - 通过 TC00020
       - 在 xfce 中打开 Firefox
     steps:
       - 点击菜单按钮，书签，管理书签
@@ -353,10 +353,10 @@ testcases:
       - 导出的文件中包含预计的信息
     cleanup:
       - 关闭 Firefox
-  - id: TC028
+  - id: TC00028
     title: 书签-管理书签-从html文件导入书签
     prequisition:
-      - 通过 TC027
+      - 通过 TC00027
       - 在 xfce 中打开 Firefox
     steps:
       - 点击菜单按钮，书签，管理书签
@@ -366,10 +366,10 @@ testcases:
       - 成功导入html文件中包含的书签
     cleanup:
       - 关闭 Firefox
-  - id: TC029
+  - id: TC00029
     title: 书签-我的足迹窗口-浏览
     prequisition:
-      - 通过 TC020
+      - 通过 TC00020
       - 在 xfce 中打开 Firefox
     steps:
       - 打开“我的足迹窗口”
@@ -378,10 +378,10 @@ testcases:
       - 成功展示我的足迹窗口
     cleanup:
       - 关闭 Firefox
-  - id: TC030
+  - id: TC00030
     title: 浏览-Ctrl滚轮页面缩放
     prequisition:
-      - 完成 TC016
+      - 完成 TC00016
       - 在 xfce 中打开 Firefox
     steps:
       - 访问`https://www.w3.org/Protocols/`
@@ -390,10 +390,10 @@ testcases:
       - 页面成功缩放
     cleanup:
       - 关闭 Firefox
-  - id: TC031
+  - id: TC00031
     title: 浏览-F11进入全屏
     prequisition:
-      - 完成 TC016
+      - 完成 TC00016
       - 在 xfce 中打开 Firefox
     steps:
       - 访问`https://www.w3.org/Protocols/`
@@ -404,11 +404,11 @@ testcases:
       - 成功退出全屏模式
     cleanup:
       - 关闭 Firefox
-  - id: TC032
+  - id: TC00032
     title: 浏览-全屏模式下缩放
     prequisition:
-      - 通过 TC030
-      - 通过 TC031
+      - 通过 TC00030
+      - 通过 TC00031
       - 在 xfce 中打开 Firefox
     steps:
       - 访问`https://www.w3.org/Protocols/`
@@ -421,10 +421,10 @@ testcases:
       - 成功退出全屏模式
     cleanup:
       - 关闭 Firefox
-  - id: TC033
+  - id: TC00033
     title: 浏览-阅读模式-地址栏图标进入
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 访问`https://support.mozilla.org/en-US/kb/how-change-your-default-browser-firefox-windows`
@@ -434,10 +434,10 @@ testcases:
       - 阅读模式图标变为蓝色
     cleanup:
       - 关闭 Firefox
-  - id: TC034
+  - id: TC00034
     title: 浏览-阅读模式-快捷键进入
     prequisition:
-      - 通过 TC033
+      - 通过 TC00033
       - 在 xfce 中打开 Firefox
     steps:
       - 访问`https://support.mozilla.org/en-US/kb/how-change-your-default-browser-firefox-windows`
@@ -447,10 +447,10 @@ testcases:
       - 阅读模式图标变为蓝色
     cleanup:
       - 关闭 Firefox
-  - id: TC035
+  - id: TC00035
     title: 浏览-阅读模式-调节布局
     prequisition:
-      - 通过 TC033
+      - 通过 TC00033
       - 在 xfce 中打开 Firefox
       - 访问`https://support.mozilla.org/en-US/kb/how-change-your-default-browser-firefox-windows`
       - 在地址栏点击阅读模式的图标进入阅读模式
@@ -461,10 +461,10 @@ testcases:
       - 成功改变布局
     cleanup:
       - 关闭 Firefox
-  - id: TC036
+  - id: TC00036
     title: 浏览-阅读模式-调节主题
     prequisition:
-      - 通过 TC033
+      - 通过 TC00033
       - 在 xfce 中打开 Firefox
       - 访问`https://support.mozilla.org/en-US/kb/how-change-your-default-browser-firefox-windows`
       - 在地址栏点击阅读模式的图标进入阅读模式
@@ -475,10 +475,10 @@ testcases:
       - 成功改变主题
     cleanup:
       - 关闭 Firefox
-  - id: TC037
+  - id: TC00037
     title: 浏览-阅读模式-退出阅读模式
     prequisition:
-      - 通过 TC033
+      - 通过 TC00033
       - 在 xfce 中打开 Firefox
       - 访问`https://support.mozilla.org/en-US/kb/how-change-your-default-browser-firefox-windows`
       - 在地址栏点击阅读模式的图标进入阅读模式
@@ -488,10 +488,10 @@ testcases:
       - 成功退出阅读模式到普通浏览模式
     cleanup:
       - 关闭 Firefox
-  - id: TC038
+  - id: TC00038
     title: 浏览-打印网页为pdf
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
       - 访问`https://support.mozilla.org/en-US/kb/how-change-your-default-browser-firefox-windows`
     steps:
@@ -501,10 +501,10 @@ testcases:
       - pdf文件成功打印
     cleanup:
       - 关闭 Firefox
-  - id: TC038
+  - id: TC00038
     title: 浏览-浏览pdf
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://sea-lab.github.io/papers/2017-HemmatiFangMantyla-Prioritizing.pdf`
@@ -513,10 +513,10 @@ testcases:
       - 页面显示正常
     cleanup:
       - 关闭 Firefox
-  - id: TC039
+  - id: TC00039
     title: 历史记录-管理历史记录-菜单打开
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 访问过多个（>=10个）网页
       - 在 xfce 中打开 Firefox
     steps:
@@ -525,10 +525,10 @@ testcases:
       - 正常打开管理历史记录界面
     cleanup:
       - 关闭 Firefox
-  - id: TC040
+  - id: TC00040
     title: 历史记录-管理历史记录-快捷键打开
     prequisition:
-      - 通过 TC039
+      - 通过 TC00039
       - 访问过多个（>=10个）网页
       - 在 xfce 中打开 Firefox
     steps:
@@ -537,10 +537,10 @@ testcases:
       - 正常打开管理历史记录界面
     cleanup:
       - 关闭 Firefox
-  - id: TC041
+  - id: TC00041
     title: 历史记录-管理历史记录-打开侧边栏
     prequisition:
-      - 通过 TC039
+      - 通过 TC00039
       - 访问过多个（>=10个）网页
       - 在 xfce 中打开 Firefox
     steps:
@@ -549,10 +549,10 @@ testcases:
       - 正常打开侧边栏显示历史记录
     cleanup:
       - 关闭 Firefox
-  - id: TC042
+  - id: TC00042
     title: 历史记录-管理历史记录-清除历史记录-全部时间-全部内容
     prequisition:
-      - 通过 TC039
+      - 通过 TC00039
       - 在 xfce 中打开 Firefox
       - 进入管理历史记录界面
     steps:
@@ -563,10 +563,10 @@ testcases:
       - 历史记录正常清除
     cleanup:
       - 关闭 Firefox
-  - id: TC043
+  - id: TC00043
     title: 下载-下载管理器-浏览
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 点击下载管理器按钮
@@ -574,10 +574,10 @@ testcases:
       - 正常展示下载管理界面
     cleanup:
       - 关闭 Firefox
-  - id: TC044
+  - id: TC00044
     title: 下载-下载管理器-下载一个文件
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 在地址栏中输入 `https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup/release-stable.toml`
@@ -587,24 +587,24 @@ testcases:
     cleanup:
       - 关闭 Firefox
       - 删除已经下载的文件
-  - id: TC045
+  - id: TC00045
     title: 下载-下载管理器-未查看的下载文件
     prequisition:
-      - 通过 TC044
+      - 通过 TC00044
       - 在 xfce 中打开 Firefox
     steps:
-      - 再次下载 TC044 中的文件
+      - 再次下载 TC00044 中的文件
     expected:
       - 下载管理器按钮为蓝色
     cleanup:
       - 关闭 Firefox
       - 删除已经下载的文件
-  - id: TC046
+  - id: TC00046
     title: 下载-历史下载记录-浏览
     prequisition:
-      - 通过 TC044
+      - 通过 TC00044
       - 在 xfce 中打开 Firefox
-      - 再次下载 TC044 中的文件
+      - 再次下载 TC00044 中的文件
     steps:
       - 点击菜单按钮，点击下载
     expected:
@@ -612,22 +612,22 @@ testcases:
     cleanup:
       - 关闭 Firefox
       - 删除已经下载的文件
-  - id: TC047
+  - id: TC00047
     title: 下载-下载管理器-删除下载的文件
     prequisition:
-      - 通过 TC044
+      - 通过 TC00044
       - 在 xfce 中打开 Firefox
-      - 再次下载 TC044 中的文件
+      - 再次下载 TC00044 中的文件
     steps:
       - 在下载管理器中删除刚刚下载的 `release-stable.toml`
     expected:
       - 在对应目录下使用终端运行ls，发现成功删除该文件
     cleanup:
       - 关闭 Firefox
-  - id: TC048
+  - id: TC00048
     title: 主页-拖动到工具栏设置主页
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 访问 `https://bing.com/`
@@ -638,10 +638,10 @@ testcases:
       - 再次打开 Firefox 后主页为 `https://bing.com/`
     cleanup:
       - 关闭 Firefox
-  - id: TC049
+  - id: TC00049
     title: 主页-使用设置菜单-设置主页为空白页
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 点击菜单按钮，点击设置，点击主页
@@ -652,10 +652,10 @@ testcases:
       - 再次打开 Firefox 后主页为所设置的主页
     cleanup:
       - 关闭 Firefox
-  - id: TC050
+  - id: TC00050
     title: 主页-使用设置菜单-设置主页为自定义URL
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 点击菜单按钮，点击设置，点击主页
@@ -666,10 +666,10 @@ testcases:
       - 再次打开 Firefox 后主页为 `https://bing.com/`
     cleanup:
       - 关闭 Firefox
-  - id: TC051
+  - id: TC00051
     title: 主页-使用设置菜单-设置主页为默认的 Firefox 主页
     prequisition:
-      - 通过 TC003
+      - 通过 TC00003
       - 在 xfce 中打开 Firefox
     steps:
       - 点击菜单按钮，点击设置，点击主页
