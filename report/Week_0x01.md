@@ -1,4 +1,4 @@
-# Jwy's Plan Week 0x01
+# Jwy's Report Week 0x01
 
 ## 初来乍到
 
