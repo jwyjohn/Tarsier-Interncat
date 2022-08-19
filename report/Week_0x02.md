@@ -2,7 +2,7 @@
 
 ## 测试组工作
 
-- [x] 将 mugen-riscv 的一篇文档初步改写成英文 [mugen-riscv/README.md](https://github.com/jwyjohn/mugen-riscv/blob/riscv/README.md) 
+- [x] 将 mugen-riscv 的一篇文档初步改写成英文 [PR在此](https://github.com/brsf11/mugen-riscv/pull/3) 
 - [x] 将下面的文献整理成为技术汇报 ：PPT 见本 repo 的`presentations`目录下 [Tarsier-Interncat/presentations/Prioritizing Manual Test Cases.pptx](https://github.com/jwyjohn/Tarsier-Interncat/blob/main/presentations/Prioritizing%20Manual%20Test%20Cases.pptx)
 
 ```
