@@ -2,7 +2,7 @@
 
 ## 测试组工作
 
-- [x] 为 VLC 公测文档提供 oerv 平台下的截图
+- [x] 为 VLC 公测文档提供 oerv 平台下的[截图](https://github.com/jwyjohn/testing/blob/main/vlc/VLC_userguide.md)
 - [x] 准备技术汇报（预计下周四进行）
 
 ```
