@@ -1,0 +1,62 @@
+%!TEX program = xelatex
+%!BIB program = bibtex
+
+\documentclass[cn,black,12pt,normal]{elegantnote}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{pdfpages}
+
+\hypersetup{hidelinks,
+backref=true,
+pagebackref=true,
+hyperindex=true,
+breaklinks=true,
+colorlinks=true,%linkcolor=black,
+urlcolor=blue,
+bookmarks=true,
+bookmarksopen=false,
+pdftitle={Title},
+pdfauthor={Author}}
+
+
+\lstset{%
+basicstyle=\linespread{0.8}\tt,
+frame=single, %把代码用带有阴影的框圈起来
+breaklines=true, %对过长的代码自动换行
+}
+
+\newcommand{\setParDef}{\setlength {\parskip} {0pt} }
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\title{Fedora $\times$ RISC-V \\Aug 2022 一页简报}
+\author{『实习生』姜文渊}
+\institute{BJ-67 Tarsier-PLCT}
+%\version{0.01}
+\date{2022 年 8 月 30 日}
+% \date{2022 年 7 月 13 日}
+\begin{document}
+% \setParDef
+\maketitle
+
+下面的内容来自 \url{scm-commits@lists.fedoraproject.org}，未进行完整的实机验证。
+
+\section*{OpenJDK}
+
+\paragraph*{java-latest-openjdk (rawhide) "Update to RC version of OpenJDK 19 (..more)"} 目前的 Fedora rawhide 中已经加入了 \lstinline{openjdk-jdk19u-jdk-19+36.tar.xz}，官方文档中宣称添加了 \lstinline{Linux/RISC-V Port}。感谢开发者 pagure 的 push 。\href{https://lists.fedoraproject.org/archives/list/scm-commits@lists.fedoraproject.org/message/UJ2DXOCMFG6H6WKK3MCKQYH66PCLMOKJ/}{SEE HERE}
+
+\section*{LuaJIT}
+
+\paragraph*{luajit (rawhide)(f37)(f36) "Update to latest luajit v2.1 git version"} 目前的 Fedora 的 rawhide 、 f37 和 f36 中已经更新到了 \lstinline{luajit v2.1 git version}，官方文档中宣称添加了 \lstinline{RISC-V 64 RVA22+ TBA} 的支持。感谢开发者 asn 的 push 。\href{https://lists.fedoraproject.org/archives/list/scm-commits@lists.fedoraproject.org/message/T4ABSC6XFUC2CXRGISJPM7GI7NQIMSVK/}{SEE HERE}
+
+\section*{mold}
+
+\paragraph*{mold (rawhide) "Bump version to 1.4.1"} 目前 mold 在 Fedora 的 rawhide 中已经更新到了 \lstinline{1.4.1} 版本，官方文档中宣称其支持链接 \lstinline{riscv64} 的原生 binary。
+\begin{lstlisting}[commentstyle=\color{black}]
+    # mold can currently produce native binaries for these architectures only
+    ExclusiveArch:	%{ix86} x86_64 %{arm} aarch64 riscv64
+\end{lstlisting}
+感谢开发者 sicherha 的 push 。\href{https://lists.fedoraproject.org/archives/list/scm-commits@lists.fedoraproject.org/message/WDUJUOX3XOMIVAZRMYVEGTJQADEYL6RT/}{SEE HERE}
+
+\end{document}
