@@ -1,4 +1,4 @@
-# Jwy's Plan Week 0x06
+# Jwy's Report Week 0x06
 
 ## BJ67 工作
 
