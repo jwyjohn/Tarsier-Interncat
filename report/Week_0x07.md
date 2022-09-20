@@ -7,5 +7,5 @@
 
 ## BJ61 工作
 
-- [x] 为 Cicada 提交至少一个 PR
+- [x] 为 Cicada 提交至少一个 PR [trying to implement *infer Cons to Pair*](https://github.com/cicada-lang/cicada/pull/37)
 - [x] Cicada 代码 Review
